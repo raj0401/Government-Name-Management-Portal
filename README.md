@@ -32,9 +32,7 @@ fuzzy_logic/
 │ ├── model.js # Model interaction logic
 │ ├── styles.css # Basic styling
 │ └── apr-client.js # Optional client code
-
-
-
+```
 ## ⚙️ How It Works
 
 1. **Dataset Generation (`Namedatasett.py`)**  
