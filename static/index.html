@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hindi Name Matcher</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Hindi Name Matcher</h1>
+            <p>Advanced ML-powered tool for matching Hindi names with different transliterations</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('compare-tab')">Compare Names</button>
+            <button class="tab-btn" onclick="openTab('search-tab')">Search Names</button>
+            <button class="tab-btn" onclick="openTab('features-tab')">Feature Importance</button>
+        </div>
+
+        <div id="compare-tab" class="tab-content active">
+            <div class="card">
+                <h2>Compare Two Names</h2>
+                <div class="form-group">
+                    <label for="name1">First Name:</label>
+                    <input type="text" id="name1" placeholder="Enter first name">
+                </div>
+                <div class="form-group">
+                    <label for="name2">Second Name:</label>
+                    <input type="text" id="name2" placeholder="Enter second name">
+                </div>
+                <div class="form-group">
+                    <label for="threshold">Match Threshold:</label>
+                    <input type="range" id="threshold" min="0" max="1" step="0.05" value="0.5">
+                    <span id="threshold-value">0.5</span>
+                </div>
+                <button onclick="compareNames()">Compare</button>
+                <div id="compare-result" class="result-box" style="display: none;">
+                    <div class="match-result" id="match-text"></div>
+                    <div class="confidence-container">
+                        <span>Confidence: </span>
+                        <span id="confidence-value"></span>
+                        <div class="confidence-bar">
+                            <div class="confidence-level" id="confidence-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Feature Breakdown</h2>
+                <div id="features-breakdown" class="features-list" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div id="search-tab" class="tab-content">
+            <div class="card">
+                <h2>Search for Name Matches</h2>
+                <div class="form-group">
+                    <label for="query-name">Query Name:</label>
+                    <input type="text" id="query-name" placeholder="Enter name to search">
+                </div>
+                <div class="form-group">
+                    <label for="candidate-names">Candidate Names:</label>
+                    <textarea id="candidate-names" placeholder="Enter potential matching names, one per line"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="search-threshold">Match Threshold:</label>
+                    <input type="range" id="search-threshold" min="0" max="1" step="0.05" value="0.5">
+                    <span id="search-threshold-value">0.5</span>
+                </div>
+                <button onclick="searchNames()">Search</button>
+                <div id="search-results" class="result-box" style="display: none;">
+                    <h3>Matches Found:</h3>
+                    <div id="matches-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="features-tab" class="tab-content">
+            <div class="card">
+                <h2>Feature Importance</h2>
+                <div class="chart-container">
+                    <canvas id="feature-chart"></canvas>
+                </div>
+                <div class="feature-explanation">
+                    <h3>How the Model Works</h3>
+                    <p>This Hindi Name Matcher model uses various string similarity metrics and phonetic algorithms to determine if two names refer to the same person, accounting for common transliteration variations in Hindi names.</p>
+                    <p>The model is trained on a dataset of Hindi name pairs that are labeled as matches or non-matches. The features used include:</p>
+                    <ul>
+                        <li><strong>Levenshtein distances:</strong> Measures the minimum number of single-character edits required to change one name into another.</li>
+                        <li><strong>Phonetic matching:</strong> Using algorithms like Soundex, Metaphone, and NYSIIS to match names that sound similar.</li>
+                        <li><strong>Hindi transliteration patterns:</strong> Special handling for common Hindi transliteration variations (aa/a, ee/i, v/w, etc.)</li>
+                        <li><strong>Character patterns:</strong> Common character sequences and n-grams between names.</li>
+                        <li><strong>Structural features:</strong> Length differences, transposition checks, and more.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Hindi Name Matcher - Powered by Machine Learning</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="/static/model.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+</html>
