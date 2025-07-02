@@ -16,7 +16,7 @@ The **Government Name Management Portal** is an intelligent web-based tool desig
 
 ## 📁 Project Structure
 
-
+```plaintext
 fuzzy_logic/
 │
 ├── HindiNameMatcher.py # Model training and feature extraction
